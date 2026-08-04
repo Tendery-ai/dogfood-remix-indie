@@ -14,6 +14,12 @@ Learn more about [Remix Stacks](https://remix.run/stacks).
 npx create-remix@latest --template remix-run/indie-stack
 ```
 
+## Sample Text
+
+This is sample text added to demonstrate updating the README. The Remix Indie
+Stack is a starting point for building full stack web applications with Remix,
+Prisma, and Fly.io. Replace this section with a description of your own project.
+
 ## What's in the stack
 
 - [Fly app deployment](https://fly.io) with [Docker](https://www.docker.com/)
