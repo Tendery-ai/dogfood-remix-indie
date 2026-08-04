@@ -187,3 +187,9 @@ This project uses ESLint for linting. That is configured in `.eslintrc.cjs`.
 ### Formatting
 
 We use [Prettier](https://prettier.io/) for auto-formatting in this project. It's recommended to install an editor plugin (like the [VSCode Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) to get auto-formatting on save. There's also a `npm run format` script you can run to format all files in the project.
+
+## Sample Text
+
+This section contains sample text to demonstrate documentation formatting.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a sample paragraph added to the README to illustrate how additional content can be included and rendered. Feel free to replace this placeholder text with real documentation as the project grows.
