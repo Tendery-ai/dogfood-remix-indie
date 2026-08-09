@@ -1,7 +1,10 @@
-# We don't want lockfiles in stacks, as people could use a different package manager
+# Upstream (a template you scaffold from) ignores every lockfile so adopters can
+# pick their own package manager. This fork is not a template — it is a dogfood
+# fixture whose install time and turn counts get measured, and that needs one
+# reproducible install. So npm's lockfile is committed; the rest stay ignored to
+# keep the choice unambiguous.
 # This part will be removed by `remix.init`
 bun.lockb
-package-lock.json
 pnpm-lock.yaml
 pnpm-lock.yml
 yarn.lock
