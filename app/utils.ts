@@ -74,3 +74,20 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+/**
+ * Formats a date (or ISO date string, as serialized by loaders) into a short,
+ * human-readable label such as "Aug 10, 2026". Uses UTC so the output is
+ * stable regardless of the environment's timezone.
+ * @param {string | Date} value The date to format
+ * @returns {string} The formatted date label
+ */
+export function formatDate(value: string | Date): string {
+  const date = typeof value === "string" ? new Date(value) : value;
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
