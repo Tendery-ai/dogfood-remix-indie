@@ -1,0 +1,1 @@
+Diagnostic only: prove whether GitHub Actions runs on this public fork after a human-authored same-repo PR.
