@@ -13,7 +13,10 @@ node_modules
 
 /build
 /public/build
-.env
+# Upstream ignores .env so scaffolded apps do not commit secrets. This fork
+# is a dogfood fixture: Prisma and Remix read DATABASE_URL / SESSION_SECRET
+# from .env, and CI already copies .env.example. The committed file is that
+# example (sqlite + placeholder secret), not a live credential.
 
 /cypress/screenshots
 /cypress/videos
