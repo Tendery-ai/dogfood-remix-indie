@@ -157,7 +157,7 @@ export default function LoginPage() {
                 htmlFor="remember"
                 className="ml-2 block text-sm text-gray-900"
               >
-                Remember me
+                Keep me signed in
               </label>
             </div>
             <div className="text-center text-sm text-gray-500">
