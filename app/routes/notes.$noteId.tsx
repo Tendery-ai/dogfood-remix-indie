@@ -6,6 +6,7 @@ import {
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";
+import { useState } from "react";
 import invariant from "tiny-invariant";
 
 import { deleteNote, getNote } from "~/models/note.server";
@@ -33,20 +34,41 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
 
 export default function NoteDetailsPage() {
   const data = useLoaderData<typeof loader>();
+  const [isConfirming, setIsConfirming] = useState(false);
 
   return (
     <div>
       <h3 className="text-2xl font-bold">{data.note.title}</h3>
       <p className="py-6">{data.note.body}</p>
       <hr className="my-4" />
-      <Form method="post">
+      {isConfirming ? (
+        <Form method="post">
+          <p className="pb-2">Are you sure you want to delete this note?</p>
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-400"
+            >
+              Confirm delete
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsConfirming(false)}
+              className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
+        </Form>
+      ) : (
         <button
-          type="submit"
+          type="button"
+          onClick={() => setIsConfirming(true)}
           className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
         >
           Delete
         </button>
-      </Form>
+      )}
     </div>
   );
 }

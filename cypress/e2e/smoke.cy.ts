@@ -44,7 +44,11 @@ describe("smoke tests", () => {
     cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
     cy.findByRole("button", { name: /save/i }).click();
 
-    cy.findByRole("button", { name: /delete/i }).click();
+    cy.findByRole("button", { name: /^delete$/i }).click();
+
+    // Deleting a note should ask for confirmation before it is gone.
+    cy.findByText(/are you sure you want to delete this note\?/i);
+    cy.findByRole("button", { name: /confirm delete/i }).click();
 
     cy.findByText("No notes yet");
   });
