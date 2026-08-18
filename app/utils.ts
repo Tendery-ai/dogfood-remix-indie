@@ -74,3 +74,18 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+/**
+ * Collapses whitespace and truncates a string to a maximum length, appending
+ * an ellipsis when the text is cut off. Useful for showing short previews.
+ * @param {string} text The text to truncate
+ * @param {number} maxLength The maximum length of the returned preview
+ * @returns {string} The truncated, single-line preview text
+ */
+export function truncate(text: string, maxLength = 100): string {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+  return `${normalized.slice(0, maxLength).trimEnd()}…`;
+}
