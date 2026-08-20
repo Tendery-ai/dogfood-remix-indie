@@ -53,7 +53,11 @@ export default function NotesPage() {
                     }
                     to={note.id}
                   >
-                    📝 {note.title}
+                    <span className="block">📝 {note.title}</span>
+                    <span className="block text-sm text-gray-500">
+                      Last updated{" "}
+                      {new Date(note.updatedAt).toLocaleString()}
+                    </span>
                   </NavLink>
                 </li>
               ))}
