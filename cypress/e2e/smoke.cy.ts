@@ -23,7 +23,10 @@ describe("smoke tests", () => {
 
     cy.findByRole("link", { name: /notes/i }).click();
     cy.findByRole("button", { name: /logout/i }).click();
-    cy.findByRole("link", { name: /log in/i });
+    cy.findByRole("link", { name: /log in/i }).click();
+    // The login submit button copy uses Title Case ("Log In"), matching the
+    // other action buttons (e.g. "Create Account") and the home page CTA.
+    cy.findByRole("button", { name: /^Log In$/ });
   });
 
   it("should allow you to make a note", () => {

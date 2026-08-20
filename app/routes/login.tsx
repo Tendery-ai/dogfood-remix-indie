@@ -143,7 +143,7 @@ export default function LoginPage() {
             type="submit"
             className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
           >
-            Log in
+            Log In
           </button>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
