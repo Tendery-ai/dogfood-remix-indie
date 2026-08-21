@@ -4,7 +4,7 @@ import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getNoteListItems } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
+import { countWords, useUser } from "~/utils";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await requireUserId(request);
@@ -53,7 +53,11 @@ export default function NotesPage() {
                     }
                     to={note.id}
                   >
-                    📝 {note.title}
+                    <span className="block">📝 {note.title}</span>
+                    <span className="block text-sm text-gray-500">
+                      {countWords(note.body)}{" "}
+                      {countWords(note.body) === 1 ? "word" : "words"}
+                    </span>
                   </NavLink>
                 </li>
               ))}

@@ -74,3 +74,13 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+/**
+ * Counts the number of whitespace-separated words in a string.
+ * @param {string} text The text to count words in
+ * @returns {number} The number of words
+ */
+export function countWords(text: string): number {
+  const matches = text.match(/\S+/g);
+  return matches ? matches.length : 0;
+}
