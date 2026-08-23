@@ -48,4 +48,57 @@ describe("smoke tests", () => {
 
     cy.findByText("No notes yet");
   });
+
+  it("should allow you to edit a note", () => {
+    const testNote = {
+      title: faker.lorem.words(1),
+      body: faker.lorem.sentences(1),
+    };
+    const editedNote = {
+      title: faker.lorem.words(1),
+      body: faker.lorem.sentences(1),
+    };
+    cy.login();
+
+    cy.visitAndCheck("/");
+
+    cy.findByRole("link", { name: /notes/i }).click();
+    cy.findByText("No notes yet");
+
+    cy.findByRole("link", { name: /\+ new note/i }).click();
+
+    cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
+    cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
+    cy.findByRole("button", { name: /save/i }).click();
+
+    // The saved note should now be editable via pre-filled fields.
+    cy.findByRole("textbox", { name: /title/i }).should(
+      "have.value",
+      testNote.title,
+    );
+    cy.findByRole("textbox", { name: /body/i }).should(
+      "have.value",
+      testNote.body,
+    );
+
+    cy.findByRole("textbox", { name: /title/i }).clear();
+    cy.findByRole("textbox", { name: /title/i }).type(editedNote.title);
+    cy.findByRole("textbox", { name: /body/i }).clear();
+    cy.findByRole("textbox", { name: /body/i }).type(editedNote.body);
+    cy.findByRole("button", { name: /save/i }).click();
+
+    // The edited values should persist after saving.
+    cy.findByRole("textbox", { name: /title/i }).should(
+      "have.value",
+      editedNote.title,
+    );
+    cy.findByRole("textbox", { name: /body/i }).should(
+      "have.value",
+      editedNote.body,
+    );
+
+    cy.findByRole("button", { name: /delete/i }).click();
+
+    cy.findByText("No notes yet");
+  });
 });
