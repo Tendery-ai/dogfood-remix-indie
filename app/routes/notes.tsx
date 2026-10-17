@@ -22,15 +22,21 @@ export default function NotesPage() {
         <h1 className="text-3xl font-bold">
           <Link to=".">Notes</Link>
         </h1>
-        <p>{user.email}</p>
-        <Form action="/logout" method="post">
-          <button
-            type="submit"
-            className="rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600"
-          >
-            Logout
-          </button>
-        </Form>
+        <details className="relative">
+          <summary className="cursor-pointer list-none rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600">
+            {user.email}
+          </summary>
+          <div className="absolute right-0 z-10 mt-2 w-48 rounded bg-white p-2 text-slate-800 shadow-lg">
+            <Form action="/logout" method="post">
+              <button
+                type="submit"
+                className="w-full rounded px-4 py-2 text-left hover:bg-slate-100 active:bg-slate-200"
+              >
+                Logout
+              </button>
+            </Form>
+          </div>
+        </details>
       </header>
 
       <main className="flex h-full bg-white">
