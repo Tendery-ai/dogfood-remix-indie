@@ -1,3 +1,5 @@
+> **Note:** This fork is a Tendery dogfood fixture.
+
 > [!NOTE]  
 > This repo has been archived. Please refer instead to:
 > - The official [React Router templates](https://github.com/remix-run/react-router-templates/) for simple templates to get started with
