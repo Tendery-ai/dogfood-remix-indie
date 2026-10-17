@@ -4,7 +4,7 @@ import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getNoteListItems } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
+import { formatUpdatedAt, useUser } from "~/utils";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await requireUserId(request);
@@ -53,7 +53,10 @@ export default function NotesPage() {
                     }
                     to={note.id}
                   >
-                    📝 {note.title}
+                    <span className="block">📝 {note.title}</span>
+                    <span className="mt-1 block text-sm font-normal text-gray-500">
+                      Updated {formatUpdatedAt(note.updatedAt)}
+                    </span>
                   </NavLink>
                 </li>
               ))}
