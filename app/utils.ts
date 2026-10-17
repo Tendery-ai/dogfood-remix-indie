@@ -74,3 +74,20 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+/**
+ * Formats a note's updatedAt timestamp for display in the notes sidebar.
+ * @param {string} value An ISO date string (as serialized by the loader)
+ * @returns {string} A human-readable date, or "unknown" if the value is invalid
+ */
+export function formatUpdatedAt(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "unknown";
+  }
+  return date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
