@@ -74,3 +74,21 @@ export function useUser(): User {
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
+
+/**
+ * Formats a date (or serialized date string) into a short, human-readable
+ * label such as "Aug 10, 2026". Loader data is serialized to strings over the
+ * wire, so this accepts either a Date or an ISO string.
+ * @param {Date|string} value The date to format
+ * @returns {string} A short formatted date, or "" if the value is invalid
+ */
+export function formatDate(value: Date | string): string {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeZone: "UTC",
+  }).format(date);
+}
